@@ -38,35 +38,39 @@ export default function BookCard({
           <span>{book.pages} pages</span>
         </div>
 
-        <div className="flex gap-3">
-          <button
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <motion.button
             type="button"
             onClick={() => onToggleFavorite(book.id)}
-            className={`flex-1 rounded-full px-4 py-2 text-sm font-semibold transition ${
+              whileTap={{ scale: 0.96 }}
+              className={`flex-1 rounded-full px-4 py-2 text-sm font-semibold transition ${
               isFavorite ? 'bg-rose-100 text-rose-700' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
             }`}
           >
             {isFavorite ? 'Saved' : 'Favorite'}
-          </button>
-          <button
+          </motion.button>
+          <motion.button
             type="button"
             onClick={() => onToggleReadingList(book.id)}
+            whileTap={{ scale: 0.96 }}
             className={`flex-1 rounded-full px-4 py-2 text-sm font-semibold transition ${
               isReadingList ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700 hover:bg-amber-200'
             }`}
           >
             {isReadingList ? 'Added' : 'Read Later'}
-          </button>
+          </motion.button>
         </div>
 
         <div className="flex items-center justify-between pt-2">
           <span className="text-lg font-extrabold text-slate-900">{book.price}</span>
-          <Link
+          <motion.div whileTap={{ scale: 0.96 }}>
+            <Link
             to={`/book/${book.id}`}
             className="rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-700"
-          >
-            View Details
-          </Link>
+            >
+              View Details
+            </Link>
+          </motion.div>
         </div>
       </div>
     </motion.article>

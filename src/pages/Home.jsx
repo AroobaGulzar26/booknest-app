@@ -63,7 +63,13 @@ export default function Home({ favoriteIds, readingListIds, onToggleFavorite, on
         </div>
       </section>
 
-      <section className="grid gap-5 md:grid-cols-3">
+      <motion.section
+        initial={{ opacity: 0, y: 18 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.45 }}
+        className="grid gap-5 md:grid-cols-3"
+      >
         {[
           { value: '8k+', label: 'Readers' },
           { value: '250+', label: 'Curated books' },
@@ -74,7 +80,7 @@ export default function Home({ favoriteIds, readingListIds, onToggleFavorite, on
             <p className="mt-2 text-sm font-medium uppercase tracking-[0.18em] text-slate-500">{stat.label}</p>
           </div>
         ))}
-      </section>
+      </motion.section>
 
       <section className="space-y-6">
         <div className="flex items-end justify-between gap-4">
@@ -87,7 +93,13 @@ export default function Home({ favoriteIds, readingListIds, onToggleFavorite, on
           </Link>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-3">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+          variants={{ visible: { transition: { staggerChildren: 0.08 } } }}
+          className="grid gap-6 md:grid-cols-3"
+        >
           {featuredBooks.map((book) => (
             <BookCard
               key={book.id}
@@ -98,7 +110,7 @@ export default function Home({ favoriteIds, readingListIds, onToggleFavorite, on
               onToggleReadingList={onToggleReadingList}
             />
           ))}
-        </div>
+        </motion.div>
       </section>
 
       <section className="rounded-[2rem] bg-slate-100 p-6 md:p-8">
