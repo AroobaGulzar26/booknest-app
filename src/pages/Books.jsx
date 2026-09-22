@@ -1,5 +1,7 @@
 import { useMemo, useState } from 'react';
 import BookCard from '../components/BookCard';
+import CategoryFilter from '../components/CategoryFilter';
+import SearchBar from '../components/SearchBar';
 import { allCategories, books } from '../data/books';
 
 export default function Books({ favoriteIds, readingListIds, onToggleFavorite, onToggleReadingList }) {
@@ -29,30 +31,13 @@ export default function Books({ favoriteIds, readingListIds, onToggleFavorite, o
 
       <section className="rounded-[2rem] border border-slate-200 bg-white p-5 shadow-sm shadow-slate-200/80">
         <div className="grid gap-4 lg:grid-cols-[1.5fr_1fr_1fr_auto]">
-          <label className="block">
-            <span className="mb-2 block text-sm font-medium text-slate-600">Search</span>
-            <input
-              value={search}
-              onChange={(event) => setSearch(event.target.value)}
-              placeholder="Search by title or author"
-              className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-800 outline-none transition focus:border-slate-300 focus:bg-white"
-            />
-          </label>
+          <SearchBar value={search} onChange={setSearch} />
 
-          <label className="block">
-            <span className="mb-2 block text-sm font-medium text-slate-600">Category</span>
-            <select
-              value={selectedCategory}
-              onChange={(event) => setSelectedCategory(event.target.value)}
-              className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-800 outline-none transition focus:border-slate-300 focus:bg-white"
-            >
-              {allCategories.map((category) => (
-                <option key={category} value={category}>
-                  {category}
-                </option>
-              ))}
-            </select>
-          </label>
+          <CategoryFilter
+            categories={allCategories}
+            value={selectedCategory}
+            onChange={setSelectedCategory}
+          />
 
           <label className="block">
             <span className="mb-2 block text-sm font-medium text-slate-600">Rating</span>
@@ -90,16 +75,23 @@ export default function Books({ favoriteIds, readingListIds, onToggleFavorite, o
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {visibleBooks.map((book) => (
-            <BookCard
-              key={book.id}
-              book={book}
-              isFavorite={favoriteIds.includes(book.id)}
-              isReadingList={readingListIds.includes(book.id)}
-              onToggleFavorite={onToggleFavorite}
-              onToggleReadingList={onToggleReadingList}
-            />
-          ))}
+          {visibleBooks.length > 0 ? (
+            visibleBooks.map((book) => (
+              <BookCard
+                key={book.id}
+                book={book}
+                isFavorite={favoriteIds.includes(book.id)}
+                isReadingList={readingListIds.includes(book.id)}
+                onToggleFavorite={onToggleFavorite}
+                onToggleReadingList={onToggleReadingList}
+              />
+            ))
+          ) : (
+            <div className="rounded-3xl border border-dashed border-slate-300 bg-white p-10 text-center md:col-span-2 xl:col-span-3">
+              <p className="text-xl font-bold text-slate-900">No books match your filters.</p>
+              <p className="mt-2 text-sm text-slate-500">Try a different title, category, or rating.</p>
+            </div>
+          )}
         </div>
       </section>
     </div>

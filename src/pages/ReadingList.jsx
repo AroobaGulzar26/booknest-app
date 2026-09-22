@@ -20,7 +20,11 @@ export default function ReadingList({ favoriteIds, readingListIds, onToggleFavor
           </Link>
         </div>
       ) : (
-        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        <div className="space-y-5">
+          <p className="text-sm text-slate-600">
+            You have <span className="font-bold text-slate-900">{readingBooks.length}</span> {readingBooks.length === 1 ? 'book' : 'books'} queued to read.
+          </p>
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {readingBooks.map((book) => (
             <BookCard
               key={book.id}
@@ -31,6 +35,7 @@ export default function ReadingList({ favoriteIds, readingListIds, onToggleFavor
               onToggleReadingList={onToggleReadingList}
             />
           ))}
+          </div>
         </div>
       )}
     </div>
