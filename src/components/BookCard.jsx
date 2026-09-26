@@ -23,6 +23,11 @@ export default function BookCard({
         <div className="absolute left-4 top-4 rounded-full bg-white/90 px-2.5 py-1 text-xs font-bold text-slate-800">
           {book.category}
         </div>
+        {isReadingList && (
+          <span className="absolute right-4 top-4 rounded-full bg-emerald-100 px-2.5 py-1 text-xs font-bold text-emerald-800">
+            To Read
+          </span>
+        )}
       </div>
 
       <div className="space-y-4 p-5">

@@ -155,6 +155,22 @@ export default function Home({ favoriteIds, readingListIds, onToggleFavorite, on
           </div>
         ))}
       </section>
+
+      <section className="rounded-[2rem] bg-amber-100 px-6 py-10 text-center sm:px-10 sm:py-14">
+        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-amber-700">Your next chapter awaits</p>
+        <h2 className="mx-auto mt-3 max-w-2xl text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">
+          Make a little room for a new favorite.
+        </h2>
+        <p className="mx-auto mt-4 max-w-xl text-sm leading-6 text-slate-600 sm:text-base">
+          Explore the collection, find a story that speaks to you, and save it for later.
+        </p>
+        <Link
+          to="/books"
+          className="mt-7 inline-flex rounded-full bg-slate-900 px-6 py-3 text-sm font-bold text-white transition hover:bg-slate-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900"
+        >
+          Explore the books
+        </Link>
+      </section>
     </div>
   );
 }
