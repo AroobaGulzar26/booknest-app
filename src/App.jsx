@@ -75,7 +75,7 @@ function App() {
   };
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <MotionConfig reducedMotion="user">
         <div className="min-h-screen bg-slate-50 text-slate-800">
           <Navbar favoritesCount={favoriteIds.length} readingListCount={readingListIds.length} />
