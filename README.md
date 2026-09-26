@@ -1,16 +1,37 @@
-# React + Vite
+# BookNest
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+BookNest is a responsive, frontend-only book discovery app built with React, Vite, Tailwind CSS, Framer Motion, and React Router. Browse a small curated catalogue, search and filter titles, inspect book details, and save favorites or a reading list in your browser.
 
-Currently, two official plugins are available:
+## Getting started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Requirements: Node.js 20.19+ or 22.12+.
 
-## React Compiler
+```sh
+npm install
+npm run dev
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Vite prints the local development URL after the server starts.
 
-## Expanding the Oxlint configuration
+## Available scripts
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Start the Vite development server |
+| `npm run lint` | Run Oxlint |
+| `npm run build` | Create a production build in `dist/` |
+| `npm run preview` | Preview the production build locally |
+
+## Routes
+
+| Path | Page |
+| --- | --- |
+| `/` | Home |
+| `/books` | Searchable and filterable book collection |
+| `/book/:id` | Book details |
+| `/favorites` | Saved favorites |
+| `/reading-list` | Reading list |
+| `/about` | About BookNest |
+| `/contact` | Frontend-only contact form |
+
+Favorites and reading-list IDs are stored in `localStorage`. The catalogue and contact form are frontend-only; the contact form displays a local success message and does not send data.

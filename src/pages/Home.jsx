@@ -71,9 +71,9 @@ export default function Home({ favoriteIds, readingListIds, onToggleFavorite, on
         className="grid gap-5 md:grid-cols-3"
       >
         {[
-          { value: '8k+', label: 'Readers' },
-          { value: '250+', label: 'Curated books' },
-          { value: '4.9/5', label: 'Average rating' },
+          { value: '8', label: 'Curated books' },
+          { value: '7', label: 'Book categories' },
+          { value: '4.8/5', label: 'Average rating' },
         ].map((stat) => (
           <div key={stat.label} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm shadow-slate-200/80">
             <p className="text-3xl font-black text-slate-900">{stat.value}</p>
@@ -125,7 +125,7 @@ export default function Home({ favoriteIds, readingListIds, onToggleFavorite, on
 
             return (
               <div key={category} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">{count} books</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">{count} {count === 1 ? 'book' : 'books'}</p>
                 <h3 className="mt-4 text-xl font-bold text-slate-900">{category}</h3>
               </div>
             );

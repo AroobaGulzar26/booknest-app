@@ -23,9 +23,9 @@ export default function About() {
 
       <section className="grid gap-6 md:grid-cols-3">
         {[
-          { value: '8k+', label: 'Community readers' },
-          { value: '250+', label: 'Curated titles' },
-          { value: '95%', label: 'Satisfied readers' },
+          { value: '8', label: 'Curated titles' },
+          { value: '7', label: 'Book categories' },
+          { value: '4.8/5', label: 'Average book rating' },
         ].map((item) => (
           <div key={item.label} className="rounded-[2rem] border border-slate-200 bg-white p-8 text-center shadow-sm">
             <p className="text-4xl font-black text-slate-900">{item.value}</p>

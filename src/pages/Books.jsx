@@ -44,6 +44,7 @@ export default function Books({ favoriteIds, readingListIds, onToggleFavorite, o
             <select
               value={minRating}
               onChange={(event) => setMinRating(Number(event.target.value))}
+              aria-label="Filter books by minimum rating"
               className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-800 outline-none transition focus:border-slate-300 focus:bg-white"
             >
               <option value={0}>Any rating</option>
@@ -70,7 +71,10 @@ export default function Books({ favoriteIds, readingListIds, onToggleFavorite, o
       <section className="space-y-4">
         <div className="flex items-center justify-between gap-4">
           <p className="text-sm font-medium text-slate-600">
-            Showing <span className="font-bold text-slate-900">{visibleBooks.length}</span> books
+            <span aria-live="polite" aria-atomic="true">
+              Showing <span className="font-bold text-slate-900">{visibleBooks.length}</span>{' '}
+              {visibleBooks.length === 1 ? 'book' : 'books'}
+            </span>
           </p>
         </div>
 
