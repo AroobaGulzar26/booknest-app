@@ -1,4 +1,5 @@
 import { Link, useParams } from 'react-router-dom';
+import { AnimatePresence, motion } from 'framer-motion';
 import { books } from '../data/books';
 
 export default function BookDetails({
@@ -67,24 +68,50 @@ export default function BookDetails({
             <p className="text-base leading-7 text-slate-600">{book.description}</p>
 
             <div className="flex flex-wrap gap-4">
-              <button
+              <motion.button
                 type="button"
                 onClick={() => onToggleFavorite(book.id)}
+                whileTap={{ scale: 0.97 }}
+                aria-pressed={isFavorite}
                 className={`rounded-full px-5 py-3 text-sm font-bold transition ${
                   isFavorite ? 'bg-rose-100 text-rose-700' : 'bg-slate-100 text-slate-800 hover:bg-slate-200'
                 }`}
               >
-                {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
-              </button>
-              <button
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.span
+                    key={isFavorite ? 'remove-favorite' : 'add-favorite'}
+                    initial={{ opacity: 0, y: 5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -5 }}
+                    transition={{ duration: 0.16 }}
+                    className="block"
+                  >
+                    {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
+                  </motion.span>
+                </AnimatePresence>
+              </motion.button>
+              <motion.button
                 type="button"
                 onClick={() => onToggleReadingList(book.id)}
+                whileTap={{ scale: 0.97 }}
+                aria-pressed={isReadingList}
                 className={`rounded-full px-5 py-3 text-sm font-bold transition ${
                   isReadingList ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-800 hover:bg-amber-200'
                 }`}
               >
-                {isReadingList ? 'Remove from Reading List' : 'Add to Reading List'}
-              </button>
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.span
+                    key={isReadingList ? 'remove-reading' : 'add-reading'}
+                    initial={{ opacity: 0, y: 5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -5 }}
+                    transition={{ duration: 0.16 }}
+                    className="block"
+                  >
+                    {isReadingList ? 'Remove from Reading List' : 'Add to Reading List'}
+                  </motion.span>
+                </AnimatePresence>
+              </motion.button>
             </div>
 
             <div className="rounded-3xl border border-slate-200 bg-slate-50 p-5">

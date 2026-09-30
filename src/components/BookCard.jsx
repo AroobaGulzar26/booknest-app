@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 export default function BookCard({
@@ -10,11 +10,13 @@ export default function BookCard({
 }) {
   return (
     <motion.article
+      layout="position"
       whileHover={{ y: -6 }}
       whileInView={{ opacity: 1, y: 0 }}
       initial={{ opacity: 0, y: 14 }}
       viewport={{ once: true, amount: 0.12 }}
-      transition={{ duration: 0.25 }}
+      exit={{ opacity: 0, y: 10, scale: 0.98 }}
+      transition={{ type: 'spring', stiffness: 320, damping: 28, duration: 0.3 }}
       className="group min-w-0 overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm shadow-slate-200/70"
     >
       <div className="relative">
@@ -23,11 +25,20 @@ export default function BookCard({
         <div className="absolute left-4 top-4 rounded-full bg-white/90 px-2.5 py-1 text-xs font-bold text-slate-800">
           {book.category}
         </div>
-        {isReadingList && (
-          <span className="absolute right-4 top-4 rounded-full bg-emerald-100 px-2.5 py-1 text-xs font-bold text-emerald-800">
-            To Read
-          </span>
-        )}
+        <AnimatePresence>
+          {isReadingList && (
+            <motion.span
+              key="to-read"
+              initial={{ opacity: 0, scale: 0.85, y: -5 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.85, y: -5 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+              className="absolute right-4 top-4 rounded-full bg-emerald-100 px-2.5 py-1 text-xs font-bold text-emerald-800"
+            >
+              To Read
+            </motion.span>
+          )}
+        </AnimatePresence>
       </div>
 
       <div className="space-y-4 p-5">
@@ -56,7 +67,18 @@ export default function BookCard({
               isFavorite ? 'bg-rose-100 text-rose-700' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
             }`}
           >
-            {isFavorite ? 'Saved' : 'Favorite'}
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.span
+                key={isFavorite ? 'saved' : 'favorite'}
+                initial={{ opacity: 0, y: 5 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -5 }}
+                transition={{ duration: 0.16, ease: 'easeOut' }}
+                className="block"
+              >
+                {isFavorite ? 'Saved' : 'Favorite'}
+              </motion.span>
+            </AnimatePresence>
           </motion.button>
           <motion.button
             type="button"
@@ -67,7 +89,18 @@ export default function BookCard({
               isReadingList ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700 hover:bg-amber-200'
             }`}
           >
-            {isReadingList ? 'Added' : 'Read Later'}
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.span
+                key={isReadingList ? 'added' : 'read-later'}
+                initial={{ opacity: 0, y: 5 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -5 }}
+                transition={{ duration: 0.16, ease: 'easeOut' }}
+                className="block"
+              >
+                {isReadingList ? 'Added' : 'Read Later'}
+              </motion.span>
+            </AnimatePresence>
           </motion.button>
         </div>
 

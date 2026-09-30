@@ -4,10 +4,10 @@ import { Link, NavLink } from 'react-router-dom';
 
 const navItems = [
   { to: '/', label: 'Home' },
+  { to: '/about', label: 'About' },
   { to: '/books', label: 'Books' },
   { to: '/favorites', label: 'Favorites' },
   { to: '/reading-list', label: 'Reading List' },
-  { to: '/about', label: 'About' },
   { to: '/contact', label: 'Contact' },
 ];
 
@@ -73,6 +73,7 @@ export default function Navbar({ favoritesCount, readingListCount }) {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.22, ease: 'easeInOut' }}
             className="border-t border-slate-200 px-4 py-3 lg:hidden"
           >
             <div className="mx-auto flex max-w-7xl flex-col gap-1 sm:flex-row sm:flex-wrap">
